@@ -1,0 +1,26 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "lishude's front-end exercise",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/islishude/test.git"
+  },
+  "author": "isLishude",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/islishude/test/issues"
+  },
+  "homepage": "https://github.com/islishude/test#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.11",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.3.1",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-uglify": "^2.1.2"
+  }
+}

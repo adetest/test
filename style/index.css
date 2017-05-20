@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+#parent {
+    color: olive;
+}
+
+.span {
+    display: inline-block;
+    margin: 10px 10px;
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+}
+
+.am-text-truncate {
+  word-wrap: normal; /* for IE */
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+  overflow: hidden;
+  width: 250px; 
+  padding: 10px;
+}
