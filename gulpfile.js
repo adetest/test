@@ -5,21 +5,21 @@ const styles = require('gulp-clean-css');
 const scripts = require('gulp-uglify');
 
 gulp.task('styles', () => {
-    gulp.src('style/*.css')
+    return gulp.src('style/*.css')
         .pipe(styles())
         .pipe(gulp.dest('dist/style'))
         .pipe(browserSync.stream());
 })
 
 gulp.task('scripts', ['styles', 'scripts'], () => {
-    gulp.src(['js/*.js'])
+   return gulp.src(['js/*.js'])
         .pipe(scripts())
         .pipe(gulp.dest('dist/js'))
         .pipe(browserSync.stream());
 })
 
 
-gulp.task('browser-sync', () => {
+gulp.task('serve', () => {
     browserSync.init({
         server: {
             baseDir: "./"
