@@ -33,6 +33,6 @@ gulp.task('serve', () => {
     gulp.watch("index.html").on('change', browserSync.reload);
 })
 
-gulp.task('default', ['browser-sync'], () => {
+gulp.task('default', ['serve'], () => {
     console.log('running!')
 })
