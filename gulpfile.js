@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const $ = require('gulp-load-plugins');
+const $ = require('gulp-load-plugins')();
 const browserSync = require('browser-sync').create();
 const styles = require('gulp-clean-css');
 const scripts = require('gulp-uglify');
