@@ -1,25 +1,59 @@
 * {
     box-sizing: border-box;
-    font-size: 16px;
 }
 
-#parent {
-    color: olive;
+.wrap {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.span {
-    display: inline-block;
-    margin: 10px 10px;
-    width: 100px;
-    height: 100px;
-    background-color: gray;
+.wrap:after {
+    clear: both;
 }
 
-.am-text-truncate {
-  word-wrap: normal; /* for IE */
-  text-overflow: ellipsis;
-  white-space: pre-wrap;
-  overflow: hidden;
-  width: 250px; 
-  padding: 10px;
+.header,
+.footer {
+    text-align: center;
+}
+
+[class*=content-] {
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+@media only screen and (max-width:680px) {
+    .content-sm-12 {
+        width: 100%;
+        background-color: gray;
+        margin-top: 10px;
+    }
+    .content-sm-4 {
+        width: 33.33%;
+        float: left;
+        position: relative;
+        background-color: green;
+    }
+    .content-sm-8 {
+        width: 66.67%;
+        background-color: red;
+    }
+}
+
+@media only screen and (min-width:641px) {
+    .content-md-4 {
+        width: 33.33%;
+        float: left;
+        position: relative;
+        background-color: green;
+    }
+    .content-md-8 {
+        width: 66.67%;
+        background-color: red;
+    }
+}
+
+.height {
+    height: 200px;
 }
