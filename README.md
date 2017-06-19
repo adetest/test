@@ -1,1 +1,3 @@
-for learning front-end
+## collaboration project
+author: isLishude  
+email: lishude@aliyun.com
