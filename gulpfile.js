@@ -7,24 +7,46 @@ const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 gulp.task('styles', () => {
-    return gulp.src('app/style/*.css')
+    return gulp.src('app/style/index.scss')
+        .pipe($.sourcemaps.init())
+        .pipe($.sass().on('error', sass.logError))
         .pipe($.cssnano())
-        .pipe(gulp.dest('dist/style'))
-        .pipe(browserSync.stream());
+        .pipe($.sourcemaps.write('.'))
+        .pipe(gulp.dest('dist/style/'))
+        .pipe(reload({
+            stream: true
+        }));
 })
 
-gulp.task('scripts', ['styles', 'scripts'], () => {
+gulp.task('scripts', () => {
     return gulp.src(['app/js/*.js'])
+        .pipe($.plumber())
+        .pipe($.sourcemaps.init())
+        .pipe($.babel({
+            presets: ['env']
+        }))
         .pipe($.uglify())
+        .pipe($.sourcemaps.write('.'))
         .pipe(gulp.dest('dist/js'))
-        .pipe(browserSync.stream());
+        .pipe(reload({
+            stream: true
+        }));
+})
+
+gulp.task('html', () => {
+    return gulp.src('app/index.html')
+        .pipe(gulp.dest('dist'))
+        .pipe(reload({
+            stream: true
+        }));
 })
 
 
-gulp.task('serve', () => {
+gulp.task('serve',['styles','scripts','html'], () => {
     browserSync.init({
+        notify: false,
         server: {
-            baseDir: "app/"
+            baseDir: 'dist/'
         }
     });
 
@@ -32,20 +54,9 @@ gulp.task('serve', () => {
 
     gulp.watch('app/js/*', ['scripts']);
 
-    gulp.watch("app/index.html").on('change', reload({
-        stream: true
-    }));
+    gulp.watch('app/index.html', ['html'])
 })
 
 gulp.task('default', ['serve'], () => {
     console.log('running!')
-})
-
-gulp.task('test', () => {
-    return gulp.src('app/style/index.scss')
-        .pipe($.sourcemaps.init())
-        .pipe($.sass().on('error',sass.logError))
-        .pipe($.cssnano())
-        .pipe($.sourcemaps.write('.'))        
-        .pipe(gulp.dest('dist/style/'))
 })
