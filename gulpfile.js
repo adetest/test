@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync').create();
 const sass = require('gulp-ruby-sass');
+const del = require('del')
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -10,6 +11,7 @@ gulp.task('styles', () => {
     return gulp.src('app/style/index.scss')
         .pipe($.sourcemaps.init())
         .pipe($.sass().on('error', sass.logError))
+        .pipe($.autoprefixer())
         .pipe($.cssnano())
         .pipe($.sourcemaps.write('.'))
         .pipe(gulp.dest('dist/style/'))
@@ -51,7 +53,7 @@ gulp.task('html', () => {
 })
 
 
-gulp.task('serve',['styles','images','scripts','html'], () => {
+gulp.task('serve',['del','styles','images','scripts','html'], () => {
     browserSync.init({
         notify: false,
         server: {
@@ -68,3 +70,5 @@ gulp.task('serve',['styles','images','scripts','html'], () => {
 gulp.task('default', ['serve'], () => {
     console.log('running!')
 })
+
+gulp.task('clean',del.bind(null,['dist']));
