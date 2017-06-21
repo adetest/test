@@ -33,8 +33,17 @@ gulp.task('scripts', () => {
         }));
 })
 
+gulp.task('images', () => {
+    return gulp.src('app/images/*.jpg')
+        .pipe(gulp.dest('dist/images'))
+        .pipe(reload({
+            stream: true
+        }))
+})
+
 gulp.task('html', () => {
     return gulp.src('app/index.html')
+        .pipe($.imagemin())
         .pipe(gulp.dest('dist'))
         .pipe(reload({
             stream: true
@@ -42,7 +51,7 @@ gulp.task('html', () => {
 })
 
 
-gulp.task('serve',['styles','scripts','html'], () => {
+gulp.task('serve',['styles','images','scripts','html'], () => {
     browserSync.init({
         notify: false,
         server: {
@@ -51,9 +60,8 @@ gulp.task('serve',['styles','scripts','html'], () => {
     });
 
     gulp.watch('app/style/*', ['styles']);
-
     gulp.watch('app/js/*', ['scripts']);
-
+    gulp.watch('app/images/*',['images'])
     gulp.watch('app/index.html', ['html'])
 })
 
