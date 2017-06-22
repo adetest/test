@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync').create();
-const sass = require('gulp-ruby-sass');
 const del = require('del')
 
 const $ = gulpLoadPlugins();
