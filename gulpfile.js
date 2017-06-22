@@ -53,7 +53,7 @@ gulp.task('html', () => {
 })
 
 
-gulp.task('serve',['del','styles','images','scripts','html'], () => {
+gulp.task('serve',['clean','styles','images','scripts','html'], () => {
     browserSync.init({
         notify: false,
         server: {
